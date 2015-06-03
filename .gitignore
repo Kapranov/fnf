@@ -2,6 +2,7 @@
 /log/*
 !/log/.keep
 /tmp
+server.sh
 
 # Ignore application configuration
 /config/application.yml
