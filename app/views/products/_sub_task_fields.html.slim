@@ -1,0 +1,13 @@
+.nested-fields
+  .form-inline
+    b = t('SubTask')
+    '
+    = f.input :name, placeholder: t('name the subtask'), label: false
+    = f.input :description, placeholder: t('add a description'), label: false
+    = link_to_remove_association f, class: 'btn btn-default btn-xs' do
+      .glyphicon.glyphicon-remove
+  .pre_tasks style="padding-left:80px"
+    = f.simple_fields_for :pre_tasks do |pre_task|
+      = render 'pre_task_fields', :f => pre_task
+    .links
+      = link_to_add_association t('add pre-task'), f, :pre_tasks

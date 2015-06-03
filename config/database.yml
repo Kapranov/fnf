@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: kapranov
+  password: nicmos 
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: fnf_development
+
+test:
+  <<: *default
+  database: fnf_test
+
+production:
+  <<: *default
+  database: fnf_production
+  username: fnf
+  password: <%= ENV['FNF_DATABASE_PASSWORD'] %>

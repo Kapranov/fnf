@@ -1,0 +1,9 @@
+.nested-fields
+  .form-inline
+    b = t('Property')
+    '
+    = f.input :name, placeholder: t('name the property'), label: false
+    = f.input :value, placeholder: t('add a value property'), label: false
+    = link_to_remove_association f, class: 'btn btn-default btn-xs' do
+      .glyphicon.glyphicon-remove
+

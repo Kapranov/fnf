@@ -1,0 +1,26 @@
+div style="padding-top:25px" 
+
+.alert.alert-warning
+  p
+    | Рады представить Вашему вниманию удобный и быстрый способ хранения товаров!
+
+h1 = t('Listing products')
+
+table.table
+  thead
+    tr
+      th = t('Name')
+      th = t('Action')
+  tbody
+    - @products.each do |product|
+      tr
+        td = product.name
+        td
+          = link_to t('Show'), product, class: 'btn btn-default btn-xs'
+          '
+          = link_to t('Edit'), edit_product_path(product), class: 'btn btn-default btn-xs'
+          '
+          = link_to t('Destroy'), product, :confirm => t('Are you sure'), :method => :delete, class: 'btn btn-xs btn-danger'
+
+
+= link_to t('New product'), new_product_path, class: 'btn btn-default btn-xs'

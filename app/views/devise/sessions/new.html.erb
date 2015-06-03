@@ -1,0 +1,25 @@
+﻿<div class="middle-box text-center loginscreen  animated fadeInDown">
+<div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'm-t', :role => 'form'}) do |f| %>
+      <h2><%= t('Go to') %></h2>
+      <br />
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.email_field :email, :autofocus => true, class: 'form-control', placeholder: t("Email") %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, class: 'form-control', placeholder: t('Password') %>
+      </div>
+      <div class="form-group">
+        <%- if devise_mapping.recoverable? %>
+          <div class="checkbox">
+          <%= link_to t('Forget password'), new_password_path(resource_name), class: 'right' %>
+          </div>
+        <% end -%>
+      </div>
+      <div class="form-group">
+        <%= f.submit t('Login'), :class => 'button right' %>
+      </div>
+    <% end %>
+</div>
+</div>

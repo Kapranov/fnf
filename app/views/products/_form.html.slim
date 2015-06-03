@@ -1,0 +1,46 @@
+= simple_form_for @product do |f|
+  = f.error_notification
+
+  = f.input :name, :label => false, :placeholder => t('The name section'), :hint => t('The title of your product'), input_html: { style: 'width: 350px'}
+
+  ul.nav.nav-tabs role='tablist'
+    li.active
+      = link_to t('Tasks'), '#tasks', data: {toggle: 'tab'}
+    li
+      = link_to t('People'), '#people', data: {toggle: 'tab'}
+    li
+      = link_to t('Owner'), '#owner', data: {toggle: 'tab'}
+    li
+      = link_to t('Tags'), '#tags', data: {toggle: 'tab'}
+
+  .tab-content
+    #tasks.tab-pane.active role='tabpanel'
+      = f.simple_fields_for :tasks do |task|
+        = render 'task_fields', :f => task
+      .links
+        = link_to_add_association t('add task'), f, :tasks
+
+    #people.tab-pane role='tabpanel'
+      = f.simple_fields_for :people do |person|
+        = render 'person_fields', :f => person
+      .links
+        = link_to_add_association t('add person'), f, :people
+
+    #owner.tab-pane role='tabpanel'
+      #owner_from_list
+        /= f.association :owner, collection: Person.order(:name), prompt: t('Choose an existing owner'), :label_method => lambda { |owner| "#{owner.name} | #{owner.subtype_name}" }
+        /= f.association :owner, collection: Person.order(:name), prompt: t('Choose an existing owner')
+        = f.association :owner, collection: Person.order(:name), prompt: t('Choose an existing owner'), label: "#{t('Owner')}".html_safe
+      = link_to_add_association t('add a new person as owner'), f, :owner
+
+    #tags.tab-pane role='tabpanel'
+      = f.simple_fields_for :product_tags do |product_tag|
+        = render 'product_tag_fields', :f => product_tag
+      = link_to_add_association t('add a tag'), f, :product_tags
+
+  .actions
+    = f.button :submit, value: t('Save'), class: "btn btn-default btn-xs",:disable_with => 'Please wait ...'
+    = '|'
+    = link_to t('Show'), @product, class: "btn btn-default btn-xs"
+    = '|'
+    = link_to t('Back'), products_path, class: "btn btn-default btn-xs"

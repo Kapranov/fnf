@@ -1,0 +1,6 @@
+.nested-fields
+  '
+  = f.input :name, :label => false, :placeholder => t('The name owner')
+  = f.input :role, :label => false, :placeholder => t('The role owner')
+  = f.input :description, :label => false, :placeholder => t('The description owner')
+  = link_to_remove_association t('remove owner'), f

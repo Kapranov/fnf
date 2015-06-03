@@ -1,0 +1,45 @@
+div style="padding-top:25px" 
+
+.alert.alert-warning
+  p
+    | Рады представить Вашему вниманию удобный и быстрый способ хранения товаров!
+
+table.table
+  tr
+    td Название
+    td
+      =@product.name
+  tr
+    td Владелец
+    td
+      = (@product.owner ? @product.owner.try(:name) : 'no owner yet')
+
+h3 Товары
+
+p
+  | Список всех созданных вами разделов
+
+table.table
+  -@product.tasks.each do |task|
+    tr
+      td= task.name
+
+h3 Контакты
+
+table.table
+  -@product.people.each do |person|
+    tr
+      td= person.name
+      td= person.role
+      td= person.description
+
+h3 Подраздел
+
+table.table
+  -@product.tags.each do |tag|
+    tr
+      td= tag.name
+
+= link_to t('Edit'), edit_product_path(@product)
+= '|'
+= link_to t('Back'), products_path

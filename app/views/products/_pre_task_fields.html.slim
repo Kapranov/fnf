@@ -1,0 +1,14 @@
+.nested-fields
+  .form-inline
+    b = t('PreTask')
+    '
+    = f.input :name, placeholder: t('name the pretask'), label: false
+    = f.input :barcode, placeholder: t('add a barcode for pretask'), label: false
+    = f.input :description, placeholder: t('add a description pretask'), label: false, as: :text
+    = link_to_remove_association f, class: 'btn btn-default btn-xs' do
+      .glyphicon.glyphicon-remove
+  .property style="padding-left:50px"
+    = f.simple_fields_for :properties do |property|
+      = render 'property_fields', :f => property
+    .links
+      = link_to_add_association t('add property'), f, :properties

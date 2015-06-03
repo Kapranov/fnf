@@ -1,0 +1,7 @@
+<div style="padding:50px"><!-- --></div>
+<h3><%= t('Users') %></h3>
+<p><%= t('Avatar file') %>: <%= @user.avatar if @user.avatar %></p>
+<p><%= t('Surname') %>: <%= @user.name if @user.name %></p>
+<p><%= t('Email') %>: <%= @user.email if @user.email %></p>
+<p><%= t('Role') %>: <%= @user.role if @user.role %></p>
+<p><%= t('Avatar') %>:<%= image_tag @user.avatar_url, size: "100x70" %></p>
